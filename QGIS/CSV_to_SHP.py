@@ -4,13 +4,15 @@ import geopandas as gpd
 import pandas as pd
 import os
 
-os.chdir('D:\iMMAP\proj\ASDC\data\OCHA-Received\\')
+os.chdir('D:\iMMAP\proj\ASDC\data\\')
 
-panda_df = pd.read_csv('MISIT_VIllages_With_VilID_AfgID.csv', delimiter=';', decimal=',')
 
+panda_df = pd.read_csv('Copy of Water Points GPSPoints.csv', delimiter=';', decimal=',')
+
+print(panda_df)
 geo_df = gpd.GeoDataFrame(
-    panda_df, geometry=gpd.points_from_xy(panda_df.POINT_X, panda_df.POINT_Y))
+    panda_df, geometry=gpd.points_from_xy(panda_df.Longitude, panda_df.Latitude))
     
 geo_df = geo_df.set_crs('epsg:4326')
 
-geo_df.to_file('MISIT_OCHA.shp')
+geo_df.to_file('WASH-Water-Points.shp')
